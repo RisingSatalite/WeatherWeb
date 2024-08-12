@@ -35,3 +35,14 @@ body {
 input, textarea {
   color: black;
 }
+
+.search-result {
+  background-color: rgb(190, 230, 244);
+  color: black;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 10px;
+  width: min-content;
+  display: inline-block
+
+}

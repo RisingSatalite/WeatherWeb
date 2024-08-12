@@ -39,7 +39,7 @@ export default function Weather() {
       <button onClick={getWeatherInfo}>Get weather</button>
       <h2>Previous Searches</h2>
       {searches.map((item, index) => (
-        <div key={index}>
+        <div key={index} className="search-result">
           <h3>{item.city}</h3>
           <p>Temperature: {item.data.main.temp}°C</p>
           <p>Condition: {item.data.weather[0].description}</p>
