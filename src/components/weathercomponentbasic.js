@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import fetchWeather from './util/fetchweather';
 
 export default function Weather() {
@@ -8,18 +8,16 @@ export default function Weather() {
   const [city, setCity] = useState('London'); // Default city
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function getWeather() {
-      try {
-        const data = await fetchWeather(city);
-        setWeather(data);
-      } catch (err) {
-        setError(err.message);
-      }
-    }
+  
 
-    getWeather();
-  }, [city]);
+  async function getWeatherInfo() {
+    try {
+      const data = await fetchWeather(city);
+      setWeather(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   return (
     <div>
@@ -36,6 +34,7 @@ export default function Weather() {
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />
+      <button onClick={getWeatherInfo}>Get weather</button>
     </div>
   );
 }
