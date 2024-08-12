@@ -15,7 +15,7 @@ export default function Weather() {
       const data = await fetchWeather(city);
       setWeather(data);
       setOldCity(city);
-      setSearches((prevSearches) => [...prevSearches, { city, data }]);
+      setSearches((prevSearches) => [{ city, data }, ...prevSearches]);//Add new searches first
     } catch (err) {
       setError(err.message);
     }
