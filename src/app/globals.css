@@ -46,3 +46,11 @@ input, textarea {
   display: inline-block
 
 }
+
+button{
+  background-color: rgb(7, 40, 53);
+  color: white;
+  border-style: solid;
+  border-color: yellow;
+  border-radius: 5px;
+}
