@@ -55,14 +55,16 @@ export default function Weather() {
 
   //Set coordinates for the map
   useEffect(() => {
-    for(let search in searches){
-      const label = search.city
-      console.log(search.timeNow)
-      const lng = search.data.coord.lon
-      const lat = search.data.coord.lat
-      setCoordinates((previousCoordindate) => {label, lng, lat},...previousCoordindate);
-    }
-  },[searches])
+    const updatedCoordinates = searches.map((search) => {
+      const label = search.city;
+      console.log(search.timeNow);
+      const lng = search.data.coord.lon;
+      const lat = search.data.coord.lat;
+      return { label, lng, lat };
+    });
+
+    setCoordinates(updatedCoordinates);
+  }, [searches]);
 
   return (
     <div>
