@@ -5,7 +5,10 @@ import fetchWeather from './util/fetchweather';
 import moment from 'moment-timezone';
 import Modal from './util/model';
 import GrandView from './util/grandview';
-import LeafletMap from './util/leafletmap';
+
+//Dynamically import
+import dynamic from 'next/dynamic';
+const  LeafletMap = dynamic(() => import('./util/leafletmap'), { ssr: false });
 
 export default function Weather() {
   const [weather, setWeather] = useState(null);
