@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import fetchWeather from './util/fetchweather';
 import moment from 'moment-timezone';
 import Modal from './util/model';
 import GrandView from './util/grandview';
+import LeafletMap from './util/leafletmap';
 
 export default function Weather() {
   const [weather, setWeather] = useState(null);
@@ -16,10 +17,13 @@ export default function Weather() {
   const [isModalVisible, setIsModalVisible] = useState(false);//For popup with extra information
   const [grandViewData, setGrandViewData] = useState('')
 
+  const [coordinates, setCoordinates] = useState([])
+
   async function getWeatherInfo() {
     try {
       const data = await fetchWeather(city);
       setWeather(data);//Set current data
+      console.log(data)//For debugging
       setOldCity(city);//Set current city
 
       //Save time
@@ -48,6 +52,16 @@ export default function Weather() {
   const closeModal = () => {
     setIsModalVisible(false);
   };
+
+  //Set coordinates for the map
+  useEffect(() => {
+    for(let search in searches){
+      const label = search.city
+      const lng = search.data.coord.lon
+      const lat = search.data.coord.lat
+      setCoordinates((previousCoorindate) => {label, lng, lat},...previousCoorindate);
+    }
+  },[searches])
 
   return (
     <div>
@@ -78,6 +92,7 @@ export default function Weather() {
       <Modal visible={isModalVisible} onClose={closeModal}>
         <GrandView content={grandViewData}/>
       </Modal>
+      <LeafletMap positions={coordinates}/>
     </div>
   );
 }
