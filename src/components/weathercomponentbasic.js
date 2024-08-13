@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import fetchWeather from './util/fetchweather';
 import moment from 'moment-timezone';
+import Modal from './util/model';
 
 export default function Weather() {
   const [weather, setWeather] = useState(null);
@@ -10,6 +11,9 @@ export default function Weather() {
   const [error, setError] = useState(null);
   const [oldCity, setOldCity] = useState('');
   const [searches, setSearches] = useState([]);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);//For popup with extra information
+  const [grandViewData, setGrandViewData] = useState('')
 
   async function getWeatherInfo() {
     try {
@@ -34,6 +38,16 @@ export default function Weather() {
     alert(data)
   }
 
+  //Open popup
+  const openModal = (data) => {
+    setGrandViewData(data)
+    setIsModalVisible(true);
+  };
+  //Close popup
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div>
       <h1>Weather in {oldCity}</h1>
@@ -57,9 +71,13 @@ export default function Weather() {
           <p>Time: {item.timeNow}</p>
           <p>Temperature: {item.data.main.temp}°C</p>
           <p>Condition: {item.data.weather[0].description}</p>
-          <button onClick={()=>displayAll(item)}>All data</button>
+          <button onClick={()=>openModal(item)}>All data</button>
         </div>
       ))}
+      <Modal visible={isModalVisible} onClose={closeModal}>
+        <h2>Popup Content</h2>
+        <p>This is the content inside the modal popup.</p>
+      </Modal>
     </div>
   );
 }
