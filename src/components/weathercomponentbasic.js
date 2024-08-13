@@ -4,6 +4,7 @@ import { useState } from 'react';
 import fetchWeather from './util/fetchweather';
 import moment from 'moment-timezone';
 import Modal from './util/model';
+import GrandView from './util/grandview';
 
 export default function Weather() {
   const [weather, setWeather] = useState(null);
@@ -75,8 +76,8 @@ export default function Weather() {
         </div>
       ))}
       <Modal visible={isModalVisible} onClose={closeModal}>
-        <h2>Popup Content</h2>
-        <p>This is the content inside the modal popup.</p>
+        <p>Hi</p>
+        <GrandView content={grandViewData}/>
       </Modal>
     </div>
   );
