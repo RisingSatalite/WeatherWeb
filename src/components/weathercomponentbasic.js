@@ -57,9 +57,10 @@ export default function Weather() {
   useEffect(() => {
     for(let search in searches){
       const label = search.city
+      console.log(search.timeNow)
       const lng = search.data.coord.lon
       const lat = search.data.coord.lat
-      setCoordinates((previousCoorindate) => {label, lng, lat},...previousCoorindate);
+      setCoordinates((previousCoordindate) => {label, lng, lat},...previousCoordindate);
     }
   },[searches])
 
