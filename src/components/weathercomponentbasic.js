@@ -76,7 +76,6 @@ export default function Weather() {
         </div>
       ))}
       <Modal visible={isModalVisible} onClose={closeModal}>
-        <p>Hi</p>
         <GrandView content={grandViewData}/>
       </Modal>
     </div>
