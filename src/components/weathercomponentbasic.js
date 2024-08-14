@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import fetchWeather from './util/fetchweather';
+//import fetchWeather from './util/fetchweather';
 import moment from 'moment-timezone';
 import Modal from './util/model';
 import GrandView from './util/grandview';
@@ -22,20 +22,33 @@ export default function Weather() {
 
   const [coordinates, setCoordinates] = useState([])
 
+  async function fetchWeather(city) {
+    try {
+      const response = await fetch(`/api/weather?city=${city}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch weather data');
+      }
+      const data = await response.json();
+      setWeatherData(data);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
   async function getWeatherInfo() {
     try {
       const data = await fetchWeather(city);
-      setWeather(data);//Set current data
-      console.log(data)//For debugging
-      setOldCity(city);//Set current city
+      setWeatherData(data); // Set current data
+      console.log(data); // For debugging
+      setOldCity(city); // Set current city
 
-      //Save time
+      // Save time
       const now = moment();
       const timeString = now.format('h:mm:ss A'); // Format time as hh:mm:ss AM/PM
       const abbr = now.tz(moment.tz.guess()).format('z');
-      const timeNow = timeString + " " + abbr
+      const timeNow = timeString + ' ' + abbr;
 
-      setSearches((prevSearches) => [{ city, data, timeNow }, ...prevSearches]);//Add new searches first
+      setSearches((prevSearches) => [{ city, data, timeNow }, ...prevSearches]); // Add new searches first
     } catch (err) {
       setError(err.message);
     }
