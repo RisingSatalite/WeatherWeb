@@ -106,8 +106,8 @@ export default function Weather() {
         <div key={index} className="search-result">
           <h3>{item.city}</h3>
           <p>Time: {item.timeNow}</p>
-          <p>Temperature: {item.data.main.temp}°C</p>
-          <p>Condition: {item.data.weather[0].description}</p>
+          <p>{item.data.main.temp}°C</p>
+          <p>{item.data.weather[0].description}</p>
           <button onClick={()=>openModal(item)}>All data</button>
         </div>
       ))}
