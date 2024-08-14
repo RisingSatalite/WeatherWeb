@@ -1,5 +1,3 @@
-'use client'
-
 export default async function fetchWeather(city) {
     const apiKey = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
     const response = await fetch(
