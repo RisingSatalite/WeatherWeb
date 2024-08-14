@@ -29,7 +29,9 @@ export default function Weather() {
         throw new Error('Failed to fetch weather data');
       }
       const data = await response.json();
-      setWeatherData(data);
+      console.log("Obtained data?")
+      console.log(data)//Debugging
+      return data
     } catch (error) {
       setError(error.message);
     }
@@ -38,7 +40,8 @@ export default function Weather() {
   async function getWeatherInfo() {
     try {
       const data = await fetchWeather(city);
-      setWeatherData(data); // Set current data
+      console.log("Data obtained")
+      setWeather(data); // Set current data
       console.log(data); // For debugging
       setOldCity(city); // Set current city
 
