@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css'; //Very important for map to look and be usable
 
 export default function LeafletMap({ positions }) {
 
@@ -15,7 +15,7 @@ export default function LeafletMap({ positions }) {
                 />
                 {positions.map((position, index) => (
                     <Marker key={index} position={[position.lat, position.lng]}>
-                    <Popup>{position.label}</Popup>
+                        <Popup>{position.label}</Popup>
                     </Marker>
                 ))}
             </MapContainer>
