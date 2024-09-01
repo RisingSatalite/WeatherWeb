@@ -10,10 +10,18 @@ export default function LeafletMap({ positions }) {
   // Function to create a custom div icon based on position.label
   const createCustomDivIcon = (label) => {
     return new L.DivIcon({
-      html: `<div style="background-color: #000; color: #fff; padding: 5px 10px; border-radius: 5px; white-space: nowrap;">${label}</div>`,
+      html: `<div style="
+        background-color: #000; 
+        color: #fff; 
+        padding: 5px 10px; 
+        border-radius: 5px; 
+        white-space: nowrap;
+        display: inline-block;
+        text-align: center;
+        box-sizing: border-box;">${label}</div>`,
       className: 'custom-div-icon',
-      iconSize: [30, 42], // Adjust as needed
-      iconAnchor: [15, 42],
+      iconSize: null, // Set to null to let the content define the size
+      iconAnchor: [15, 42], // Adjust this if needed
     });
   };
 
