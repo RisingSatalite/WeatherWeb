@@ -23,7 +23,7 @@ export default function LeafletMap({ positions }) {
                 />
                 {positions.map((position, index) => (
                     <Marker key={index} position={[position.lat, position.lng]} icon={customDivIcon}>
-                      <Popup>{label}</Popup>
+                      <Popup>{position.label}</Popup>
                     </Marker>
                 ))}
             </MapContainer>
