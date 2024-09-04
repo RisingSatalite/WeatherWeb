@@ -100,7 +100,7 @@ export default function Weather() {
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />
-      <button onClick={getWeatherInfo}>Get weather</button>
+      <button class="bg-orange-400 text-black" onClick={getWeatherInfo}>Get weather</button>
       <div>Type , and country code for smaller cities that share name with other cities. &quot;London,CA&quot; for London in Canada</div>
       <h2>Previous Searches</h2>
       {searches.map((item, index) => (
